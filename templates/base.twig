@@ -1,0 +1,96 @@
+{% block html_head_container %}
+<!doctype html>
+<!--[if gt IE 8]><!--><html class="no-js" {{site.language_attributes}}> <!--<![endif]-->
+<head>
+	<meta charset="{{site.charset}}" />
+	<title>
+			{{ wp_title ? wp_title ~ ' - ' }}{{ site.name }}
+	</title>
+	<meta name="description" content="{{site.description}}">
+	<link rel="stylesheet" href="{{site.theme.link}}/style.css" type="text/css" media="screen" />
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<link rel="pingback" href="{{site.pingback_url}}" />
+
+	{{function('wp_head')}}
+
+	{% block head %}
+	{% endblock %}
+	</head>
+{% endblock %}
+
+	<body class="{{body_class}}" data-template="base.twig">
+
+		{% block header %}
+		<header>
+
+			<h1 role="banner">
+				<a href="{{site.url}}" rel="home">{{site.name}}</a>
+			</h1>
+
+			{#% include "menu.twig" with {'menu': menu.get_items} %#}
+			<nav role="navigation">
+				{{ fn("wp_nav_menu","&theme_location=main_menu&container=false") }}
+			</nav>
+
+			{% block search %}
+			<form action="{{ site.url }}">
+				<input type="text" name="s">
+				<button type="submit">Search</button>
+			</form>
+			{% endblock %}
+
+		</header>
+		{% endblock %}
+
+
+		{% block content %}
+		<section role="main">
+
+			{% if title %}
+				<h1>{{ title }}</h1>
+			{% endif %}
+
+			<div class="{{sidebar_class}}">
+				Sorry, no content
+			</div>
+
+
+		</section>
+		{% endblock %}
+
+
+		{% if sidebar1 %}
+		<aside>
+			<ul class="widgets">
+				{{ sidebar1 }}
+			</ul>
+		</aside>
+		{% endif %}
+
+		{% if sidebar2 %}
+		<aside>
+			<ul class="widgets">
+				{{ sidebar2 }}
+			</ul>
+		</aside>
+		{% endif %}
+
+
+		{% block footer %}
+		<footer>
+			<p>
+				Copyright {{"now"|date('Y')}}
+			</p>
+			{{ fn("wp_nav_menu","&theme_location=footer_menu") }}
+		</footer>
+		{% endblock %}
+
+		{{ function('wp_footer') }}
+
+		{% block scripts %}
+		{% endblock %}
+	</body>
+</html>

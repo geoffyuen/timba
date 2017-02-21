@@ -1,0 +1,11 @@
+{% extends "tease.twig" %}
+
+{% block content %}
+	{% if post.thumbnail.src %}
+		<img src="{{ post.thumbnail.src }}" />
+	{% endif %}
+
+	<h2><a href="{{ post.link }}">{{ post.title }}</a></h2>
+
+	<p>{{ post.get_preview(25) }}</p>
+{% endblock %}
