@@ -86,6 +86,9 @@
 			{{ fn("wp_nav_menu","&theme_location=footer_menu") }}
 		</footer>
 		{% endblock %}
+		<script>
+			var themepath =  '{{ theme.path }}';
+		</script>
 
 		{{ function('wp_footer') }}
 
