@@ -40,6 +40,7 @@ class StarterSite extends TimberSite {
 		$context['site'] = $this;
 		$context['sidebar1'] = Timber::get_widgets('sidebar-1');
 		$context['sidebar2'] = Timber::get_widgets('sidebar-2');
+		$context['debug'] = WP_DEBUG === true;
 		return $context;
 	}
 
